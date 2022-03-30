@@ -9,5 +9,6 @@ const userRouter = require('./route/user.route');
 const app = express();
 app.use(cors());
 app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.json());
 app.use("/user",userRouter);
 app.listen(port,()=>{console.log("Server Stated")});
