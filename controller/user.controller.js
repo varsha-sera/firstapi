@@ -19,7 +19,14 @@ exports.signUp = ((request,response)=>{
 });
 exports.signIn = ((request,response)=>{
     User.findOne({email : request.body.email,password : request.body.password}).then(result=>{
-        return response.status(201).json(result);
+        let payload = {Subject : result._id};
+        let token = jwt.sign(payload,'Header');
+        return response.status(201).
+        json({
+            status : "Login SuccessFul",
+            current_user : result,
+            token : token
+    });
        
     }).catch(err=>{
     return response.status(500).json({message :"Oops something went wrong"});
