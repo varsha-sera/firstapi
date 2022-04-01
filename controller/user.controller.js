@@ -29,6 +29,6 @@ exports.signIn = ((request,response)=>{
     });
        
     }).catch(err=>{
-    return response.status(500).json({message :"Oops something went wrong"});
+    return response.status(500).json({message :"Oops something went wrong",error: err});
     })
 })
