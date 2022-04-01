@@ -1,6 +1,6 @@
 const User = require('../model/user.model');
 const {validationResult} = require('express-validator');
-const { request } = require('express');
+const jwt = require('jsonwebtoken');
 exports.signUp = ((request,response)=>{
     const error = validationResult(request);
     if(!error.isEmpty)
@@ -19,16 +19,17 @@ exports.signUp = ((request,response)=>{
 });
 exports.signIn = ((request,response)=>{
     User.findOne({email : request.body.email,password : request.body.password}).then(result=>{
-        let payload = {Subject : result._id};
+        let payload = {subject : result._id};
         let token = jwt.sign(payload,'Header');
         return response.status(201).
         json({
             status : "Login SuccessFul",
-            current_user : result,
+            result : result,
             token : token
     });
        
     }).catch(err=>{
+     console.log(err);   
     return response.status(500).json({message :"Oops something went wrong",error: err});
     })
 })

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const jwt = require('jsonwebtoken');
+
 
 const port = process.env.PORT || 3000
 mongoose.connect("mongodb+srv://vsera0927:varsha123@database.afv8a.mongodb.net/firstapidb?retryWrites=true&w=majority")
