@@ -8,12 +8,12 @@ exports.verifyToken = (request,response,next)=>{
             return response.status(401).send('unauthorized');
 
         let token = request.headers.authorization.split(" ")[1];
-        let payload = jwt.varify(token,'Header');
+        let payload = jwt.verify(token,'Header');
         console.log(payload);
         next();
     }
     catch(err){
         console.log(err);
-        return response.status(401).send("Oops something went wrong");    
+        return response.status(401).send('Oops! something went wrong');    
     }
 }

@@ -13,7 +13,7 @@ var stroage = multer.diskStorage(
     }
 );
 var upload = multer({storage : stroage});
-router.post("/add",upload.single,tokenvarification.verifyToken('cimage'),
+router.post("/add",upload.single('cimage'),tokenvarification.verifyToken,
 body('cname').notEmpty(),
 categoryController.add
 );
