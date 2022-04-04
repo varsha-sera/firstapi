@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {body} = require('express-validator');
+
+const tokenvarification = require('../middleware/token.verification');
 const categoryController = require('../controller/category.controller');
 const multer = require('multer');
 var stroage = multer.diskStorage(
@@ -12,9 +14,14 @@ var stroage = multer.diskStorage(
     }
 );
 var upload = multer({storage : stroage});
-router.post("/add",upload.single('cimage'),
+
+router.post("/add",upload.single('cimage'),tokenvarification.verifyToken,
+
 body('cname').notEmpty(),
 categoryController.add
 );
+
+router.post("/category-list",tokenvarification.verifyToken);
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const Category = require('../model/category.model');
 const {validationResult} = require('express-validator');
-const { response } = require('express');
 
+const { response } = require('express');
 exports.add = ((request,response)=>{
     const error = validationResult(request);
     if(!error.isEmpty)
