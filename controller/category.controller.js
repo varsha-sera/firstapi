@@ -5,6 +5,8 @@ const { response } = require('express');
 exports.add = ((request,response)=>{
     console.log("Hello")
     console.log("Hello")
+    console.log("Hello")
+
 
     const error = validationResult(request);
     if(!error.isEmpty)
