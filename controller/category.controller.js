@@ -4,10 +4,6 @@ const {validationResult} = require('express-validator');
 const { response } = require('express');
 exports.add = ((request,response)=>{
     console.log("Hello")
-    console.log("Hello")
-    console.log("Hello")
-
-
     const error = validationResult(request);
     if(!error.isEmpty)
     {
@@ -20,4 +16,12 @@ exports.add = ((request,response)=>{
 }).catch(err=>{
     return response.status(500).json({message : "Oops something went wrong.."});
 });
+})
+exports.getCategory = ((request,response)=>{
+    Category.find().then(result=>{
+        return response.status(200).json(result);
+
+    }).catch(err=>{
+        return response.status(500).json({message:"Oops something went wrrong"});
+    })
 })

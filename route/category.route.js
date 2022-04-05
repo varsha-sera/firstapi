@@ -21,7 +21,8 @@ body('cname').notEmpty(),
 categoryController.add
 );
 
-router.post("/category-list",tokenvarification.verifyToken);
+router.get("/category-list",tokenvarification.verifyToken,
+categoryController.getCategory);
 
 
 module.exports = router;
